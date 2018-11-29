@@ -61,5 +61,14 @@ protected Map<String, MediaType> getDefaultMediaTypes() {
 }
 ```
 
+### 为什么加了xml的依赖，返回数据格式就成为了xml格式
 
-​	
+1. 与请求的accept有关
+
+```http
+Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8
+```
+
+​	如果请求的时候指定了服务器能都消费的媒体类型,在WebMvcConfigurationSupport#getDefaultMediaTypes中会根据存在的class设置能够处理媒体类型。
+
+​	如果没有指定或者指定的类型，在WebMvcConfigurationSupport#getDefaultMediaTypes中没有找到能够处理指定类型的class文件，会默认返回json格式数据
