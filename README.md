@@ -18,18 +18,20 @@
 
 ##自描述消息
 
-`   `@Import(DelegatingWebMvcConfiguration.class)
+```java
+@Import(DelegatingWebMvcConfiguration.class)
 public @interface EnableWebMvc {
 }
+```
 
-
-
+```java
 @Configuration
 public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {}
+```
 
-
-
+```java
 WebMvcConfigurationSupport#getDefaultMediaTypes(系统自动选择自描述消息)
+```
 
 ##返回XML格式的自描述消息
 
