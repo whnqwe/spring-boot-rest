@@ -1,5 +1,5 @@
 # spring-boot-rest
- 
+
 
 ##常用注解
 
@@ -23,8 +23,10 @@ public @interface EnableWebMvc {
 }
 
 
+
 @Configuration
-public class DelegatingWebMvcConfiguration 
-        extends WebMvcConfigurationSupport {}
-        
+public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {}
+
+
+
 WebMvcConfigurationSupport#getDefaultMediaTypes(系统自动选择自描述消息)
