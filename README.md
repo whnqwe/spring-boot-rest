@@ -1,7 +1,7 @@
 # spring-boot-rest
 
 
-##常用注解
+## 常用注解
 
 
 
@@ -16,7 +16,7 @@
 @RequestParam
 
 
-##自描述消息
+## 自描述消息
 
 ```java
 @Import(DelegatingWebMvcConfiguration.class)
@@ -33,7 +33,7 @@ public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {}
 WebMvcConfigurationSupport#getDefaultMediaTypes(系统自动选择自描述消息)
 ```
 
-##返回XML格式的自描述消息
+## 返回XML格式的自描述消息
 
 ```xml
 	<dependency>
@@ -44,7 +44,7 @@ WebMvcConfigurationSupport#getDefaultMediaTypes(系统自动选择自描述消�
 ```
 
 
-##WebMvcConfigurationSupport#getDefaultMediaTypes
+## WebMvcConfigurationSupport#getDefaultMediaTypes
 
 ```java
 protected Map<String, MediaType> getDefaultMediaTypes() {
