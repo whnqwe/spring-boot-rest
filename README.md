@@ -83,9 +83,12 @@ protected final void addDefaultHttpMessageConverters(List<HttpMessageConverter<?
 			messageConverters.add(new MappingJackson2HttpMessageConverter(builder.build()));
 		}
 }
+```
+
 
 ## WebMvcConfigurationSupport#getMessageConverters
 
+```java
 protected final List<HttpMessageConverter<?>> getMessageConverters() {
     if (this.messageConverters == null) {
         this.messageConverters = new ArrayList<>();
@@ -97,9 +100,11 @@ protected final List<HttpMessageConverter<?>> getMessageConverters() {
     }
     return this.messageConverters;
 }
+```
 
 ## WebMvcConfigurationSupport#requestMappingHandlerAdapter
 
+```java
 public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
     RequestMappingHandlerAdapter adapter = createRequestMappingHandlerAdapter();
     adapter.setContentNegotiationManager(mvcContentNegotiationManager());
