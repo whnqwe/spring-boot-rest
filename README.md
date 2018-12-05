@@ -122,6 +122,29 @@ public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
 并且控制写出
 ```
 
+```html
+Spring Boot 默认使用 Jackson2 序列化方式,处理类 MappingJackson2HttpMessageConverter
+```
+
+## MappingJackson2HttpMessageConverter
+```html
+MappingJackson2HttpMessageConverter，提供两类方法：
+读read* ：通过 HTTP 请求内容转化成对应的 Bean
+写write*：通过 Bean 序列化成对应文本内容作为响应内容
+```
+```java
+@Override
+public boolean canRead(Class<?> clazz, @Nullable MediaType mediaType) {
+   ...
+}
+	
+@Override
+public boolean canWrite(Class<?> clazz, @Nullable MediaType mediaType) {
+   ...
+}
+
+```
+
 ### 为什么加了xml的依赖，返回数据格式就成为了xml格式
 
 1. 与请求的accept有
