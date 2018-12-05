@@ -84,26 +84,30 @@ protected final void addDefaultHttpMessageConverters(List<HttpMessageConverter<?
 		}
 }
 
-	protected final List<HttpMessageConverter<?>> getMessageConverters() {
-		if (this.messageConverters == null) {
-			this.messageConverters = new ArrayList<>();
-			configureMessageConverters(this.messageConverters);
-			if (this.messageConverters.isEmpty()) {
-				addDefaultHttpMessageConverters(this.messageConverters);
-			}
-			extendMessageConverters(this.messageConverters);
-		}
-		return this.messageConverters;
-	}
-	
-		public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
-    		RequestMappingHandlerAdapter adapter = createRequestMappingHandlerAdapter();
-    		adapter.setContentNegotiationManager(mvcContentNegotiationManager());
-    		adapter.setMessageConverters(getMessageConverters());
-    		adapter.setWebBindingInitializer(getConfigurableWebBindingInitializer());
-    		adapter.setCustomArgumentResolvers(getArgumentResolvers());
-    		adapter.setCustomReturnValueHandlers(getReturnValueHandlers());
-    		｝
+## WebMvcConfigurationSupport#getMessageConverters
+
+protected final List<HttpMessageConverter<?>> getMessageConverters() {
+    if (this.messageConverters == null) {
+        this.messageConverters = new ArrayList<>();
+        configureMessageConverters(this.messageConverters);
+        if (this.messageConverters.isEmpty()) {
+            addDefaultHttpMessageConverters(this.messageConverters);
+        }
+        extendMessageConverters(this.messageConverters);
+    }
+    return this.messageConverters;
+}
+
+## WebMvcConfigurationSupport#requestMappingHandlerAdapter
+
+public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+    RequestMappingHandlerAdapter adapter = createRequestMappingHandlerAdapter();
+    adapter.setContentNegotiationManager(mvcContentNegotiationManager());
+    adapter.setMessageConverters(getMessageConverters());
+    adapter.setWebBindingInitializer(getConfigurableWebBindingInitializer());
+    adapter.setCustomArgumentResolvers(getArgumentResolvers());
+    adapter.setCustomReturnValueHandlers(getReturnValueHandlers());
+    ｝
 
 ```
 
