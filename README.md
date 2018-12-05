@@ -142,8 +142,13 @@ public boolean canRead(Class<?> clazz, @Nullable MediaType mediaType) {
 public boolean canWrite(Class<?> clazz, @Nullable MediaType mediaType) {
    ...
 }
-
 ```
+```html
+canWrite()为切入点
+AbstractMessageConverterMethodProcessor#writeWithMessageConverters 处理匹配的类型
+ AbstractMessageConverterMethodProcessor#getProducibleMediaTypes  产生的类型
+```
+
 
 ### 为什么加了xml的依赖，返回数据格式就成为了xml格式
 
@@ -156,3 +161,6 @@ Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/ap
 ​	如果请求的时候指定了服务器能都消费的媒体类型,在WebMvcConfigurationSupport#getDefaultMediaTypes中会根据存在的class设置能够处理媒体类型。
 
 ​	如果没有指定或者指定的类型，在WebMvcConfigurationSupport#getDefaultMediaTypes中没有找到能够处理指定类型的class文件，会默认返回json格式数据
+
+## 自定义自描述消息
+
