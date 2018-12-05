@@ -61,9 +61,61 @@ protected Map<String, MediaType> getDefaultMediaTypes() {
 }
 ```
 
+## WebMvcConfigurationSupport#addDefaultHttpMessageConverters
+
+```java
+protected final void addDefaultHttpMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
+  		...
+  		if (jackson2XmlPresent) {
+  			Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.xml();
+  			if (this.applicationContext != null) {
+  				builder.applicationContext(this.applicationContext);
+  			}
+  			messageConverters.add(new MappingJackson2XmlHttpMessageConverter(builder.build()));
+  		}
+  		...
+  		
+		if (jackson2Present) {
+			Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.json();
+			if (this.applicationContext != null) {
+				builder.applicationContext(this.applicationContext);
+			}
+			messageConverters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+		}
+}
+
+	protected final List<HttpMessageConverter<?>> getMessageConverters() {
+		if (this.messageConverters == null) {
+			this.messageConverters = new ArrayList<>();
+			configureMessageConverters(this.messageConverters);
+			if (this.messageConverters.isEmpty()) {
+				addDefaultHttpMessageConverters(this.messageConverters);
+			}
+			extendMessageConverters(this.messageConverters);
+		}
+		return this.messageConverters;
+	}
+	
+		public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+    		RequestMappingHandlerAdapter adapter = createRequestMappingHandlerAdapter();
+    		adapter.setContentNegotiationManager(mvcContentNegotiationManager());
+    		adapter.setMessageConverters(getMessageConverters());
+    		adapter.setWebBindingInitializer(getConfigurableWebBindingInitializer());
+    		adapter.setCustomArgumentResolvers(getArgumentResolvers());
+    		adapter.setCustomReturnValueHandlers(getReturnValueHandlers());
+    		｝
+
+```
+
+
+```html
+所有的HTTP自描述消息处理器都保存在messageConverters中，这个集合会传递到requestMappingHandlerAdapter中
+并且控制写出
+```
+
 ### 为什么加了xml的依赖，返回数据格式就成为了xml格式
 
-1. 与请求的accept有关
+1. 与请求的accept有
 
 ```http
 Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8
