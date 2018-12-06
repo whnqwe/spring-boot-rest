@@ -203,3 +203,10 @@ user.name = zhangsan
 user.address = china
 ```
 
+### 对应关系
+```xml
+Accpet -----> produces
+
+Content-Type ---> consumes
+```
+
