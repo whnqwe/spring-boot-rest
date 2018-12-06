@@ -174,6 +174,10 @@ public class WebWvcConfig implements WebMvcConfigurer{
 
 ## 自定义自描述消息
 
+输入JSON输出properties
+
+输入properties输出JSON
+
 User
 
 JSON(application/json)
@@ -198,3 +202,4 @@ properties (application/properties+user)
 user.name = zhangsan
 user.address = china
 ```
+
