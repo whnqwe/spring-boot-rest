@@ -1,5 +1,6 @@
 package cn.zhangspace.springbootrest.config;
 
+import cn.zhangspace.springbootrest.http.message.PropertiesUserHttpMessageConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -13,6 +14,6 @@ public class WebWvcConfig implements WebMvcConfigurer{
 
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        //converters.set(0,new MappingJackson2XmlHttpMessageConverter());
+        converters.add(new PropertiesUserHttpMessageConverter());
     }
 }
