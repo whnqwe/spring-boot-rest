@@ -158,9 +158,43 @@ AbstractMessageConverterMethodProcessor#writeWithMessageConverters 处理匹配�
 Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8
 ```
 
-​	如果请求的时候指定了服务器能都消费的媒体类型,在WebMvcConfigurationSupport#getDefaultMediaTypes中会根据存在的class设置能够处理媒体类型。
+### 修改自描述消息的排序
 
-​	如果没有指定或者指定的类型，在WebMvcConfigurationSupport#getDefaultMediaTypes中没有找到能够处理指定类型的class文件，会默认返回json格式数据
+```java
+@Configuration
+public class WebWvcConfig implements WebMvcConfigurer{
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.set(0,new MappingJackson2XmlHttpMessageConverter());
+    }
+}
+
+```
+
 
 ## 自定义自描述消息
 
+User
+
+JSON(application/json)
+```json
+{
+    "name": "zhangsan",
+    "address": "china"
+}
+```
+
+XML(application/XML)
+```xml
+<User>
+    <name>zhangsan</name>
+    <address>china</address>
+</User>
+```
+
+properties (application/properties+user)
+扩展
+```properties
+user.name = zhangsan
+user.address = china
+```
